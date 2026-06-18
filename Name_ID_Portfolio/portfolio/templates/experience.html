@@ -1,0 +1,29 @@
+{% extends 'master/base.html' %}
+{% block content %}
+
+<h2>Experience</h2>
+
+<p><a href="{% url 'add_experience_page' %}">+ Add Experience</a></p>
+
+{% for ex in experience_data %}
+
+<p><b>Position:</b> {{ ex.position }}</p>
+<p><b>Company:</b> {{ ex.company }}</p>
+<p><b>Start Date:</b> {{ ex.start_date }}</p>
+<p><b>End Date:</b> {{ ex.end_date|default:"Present" }}</p>
+<p><b>Description:</b> {{ ex.description }}</p>
+
+<p>
+    <a href="{% url 'update_experience_page' ex.id %}">Edit</a> |
+    <a href="{% url 'delete_experience_page' ex.id %}">Delete</a>
+</p>
+
+<hr>
+
+{% empty %}
+
+<p>No experience found</p>
+
+{% endfor %}
+
+{% endblock %}

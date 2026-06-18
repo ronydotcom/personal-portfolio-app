@@ -1,0 +1,68 @@
+{% extends 'master/base.html' %}
+{% block content %}
+
+<h2>Resume</h2>
+<hr>
+
+{% if profile %}
+
+<h3>Profile</h3>
+
+<p><b>Name:</b> {{ profile.full_name }}</p>
+<p><b>Email:</b> {{ profile.email }}</p>
+<p><b>Phone:</b> {{ profile.phone }}</p>
+<p><b>Title:</b> {{ profile.title }}</p>
+<p><b>About:</b> {{ profile.about }}</p>
+
+<p>
+    <a href="{% url 'profile_page' %}?edit=true">Edit Profile</a>
+</p>
+
+<hr>
+
+<h3>Education</h3>
+
+{% for e in educations %}
+
+<p><b>Degree:</b> {{ e.degree }}</p>
+<p><b>Institute:</b> {{ e.institute }}</p>
+<p><b>Start Year:</b> {{ e.start_year }}</p>
+<p><b>End Year:</b> {{ e.end_year }}</p>
+
+<hr>
+
+{% empty %}
+
+<p>No education</p>
+
+{% endfor %}
+
+<h3>Experience</h3>
+
+{% for ex in experiences %}
+
+<p><b>Position:</b> {{ ex.position }}</p>
+<p><b>Company:</b> {{ ex.company }}</p>
+<p><b>Start Date:</b> {{ ex.start_date }}</p>
+<p><b>End Date:</b> {{ ex.end_date|default:"Present" }}</p>
+<p><b>Description:</b> {{ ex.description }}</p>
+
+<hr>
+
+{% empty %}
+
+<p>No experience</p>
+
+{% endfor %}
+
+{% else %}
+
+<p>No profile found</p>
+
+<p>
+    <a href="{% url 'profile_page' %}">Create Profile</a>
+</p>
+
+{% endif %}
+
+{% endblock %}

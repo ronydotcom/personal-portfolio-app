@@ -1,0 +1,26 @@
+{% extends 'master/base.html' %}
+{% block content %}
+
+<h2>Skills</h2>
+
+<p><a href="{% url 'add_skill_page' %}">+ Add Skill</a></p>
+
+{% for s in skill_data %}
+
+<p><b>Skill:</b> {{ s.skill_name }}</p>
+<p><b>Proficiency:</b> {{ s.proficiency }}%</p>
+
+<p>
+    <a href="{% url 'update_skill_page' s.id %}">Edit</a> |
+    <a href="{% url 'delete_skill_page' s.id %}">Delete</a>
+</p>
+
+<hr>
+
+{% empty %}
+
+<p>No skills found</p>
+
+{% endfor %}
+
+{% endblock %}

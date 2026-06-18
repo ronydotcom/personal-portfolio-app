@@ -1,0 +1,38 @@
+{% extends 'master/base.html' %}
+{% block content %}
+
+<h3>Projects</h3>
+
+<p>
+    <a href="{% url 'add_project_page' %}">+ Add Project</a>
+</p>
+
+{% for p in projects %}
+
+<p><b>Title:</b> {{ p.title }}</p>
+<p><b>Description:</b> {{ p.description }}</p>
+
+<p><b>GitHub:</b> {{ p.github_link }}</p>
+<p><b>Live Link:</b> {{ p.live_link }}</p>
+
+<p><b>Created At:</b> {{ p.created_at|date:"M d, Y h:i A" }}</p>
+
+{% if p.image %}
+<p><b>Image:</b></p>
+<img src="{{ p.image.url }}" width="150">
+{% endif %}
+
+<p>
+    <a href="{% url 'update_project_page' p.id %}">Edit</a> |
+    <a href="{% url 'delete_project_page' p.id %}">Delete</a>
+</p>
+
+<hr>
+
+{% empty %}
+
+<p>No projects</p>
+
+{% endfor %}
+
+{% endblock %}

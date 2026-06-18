@@ -1,0 +1,28 @@
+{% extends 'master/base.html' %}
+{% block content %}
+
+<h2>Education</h2>
+
+<p><a href="{% url 'add_education_page' %}">+ Add Education</a></p>
+
+{% for e in education_data %}
+
+<p><b>Degree:</b> {{ e.degree }}</p>
+<p><b>Institute:</b> {{ e.institute }}</p>
+<p><b>Start Year:</b> {{ e.start_year }}</p>
+<p><b>End Year:</b> {{ e.end_year }}</p>
+
+<p>
+    <a href="{% url 'update_education_page' e.id %}">Edit</a> |
+    <a href="{% url 'delete_education_page' e.id %}">Delete</a>
+</p>
+
+<hr>
+
+{% empty %}
+
+<p>No education found</p>
+
+{% endfor %}
+
+{% endblock %}

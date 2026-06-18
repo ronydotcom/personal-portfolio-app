@@ -1,0 +1,38 @@
+{% extends 'master/base.html' %}
+{% block content %}
+
+<h2>Profile</h2>
+
+<hr>
+
+{% if profile %}
+
+<p><b>Name:</b> {{ profile.full_name }}</p>
+<p><b>Email:</b> {{ profile.email }}</p>
+<p><b>Phone:</b> {{ profile.phone }}</p>
+<p><b>Address:</b> {{ profile.address }}</p>
+<p><b>Title:</b> {{ profile.title }}</p>
+<p><b>About:</b> {{ profile.about }}</p>
+
+{% if profile.profile_image %}
+    <img src="{{ profile.profile_image.url }}" width="120">
+{% endif %}
+
+<br><br>
+
+<a href="?edit=true">Edit Profile</a>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" name="delete_profile">Delete Profile</button>
+</form>
+
+{% else %}
+
+<p>No profile found. Please create one.</p>
+
+<a href="?edit=true">Create Profile</a>
+
+{% endif %}
+
+{% endblock %}

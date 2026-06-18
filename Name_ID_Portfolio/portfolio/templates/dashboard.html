@@ -1,0 +1,17 @@
+{% extends 'master/base.html' %}
+{% block content %}
+
+<h2>Dashboard</h2>
+
+<p>Welcome {{ request.user.username }}</p>
+
+<hr>
+
+<div>
+    <p>Total Skills: {{ skill_count }}</p>
+    <p>Total Education: {{ education_count }}</p>
+    <p>Total Experience: {{ experience_count }}</p>
+    <p>Total Projects: {{ project_count }}</p>
+</div>
+
+{% endblock %}
